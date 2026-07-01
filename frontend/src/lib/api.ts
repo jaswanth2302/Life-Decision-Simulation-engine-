@@ -90,10 +90,14 @@ export interface ApiError {
 // Client
 // ---------------------------------------------------------------------------
 
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_URL ??
+  "https://web-production-6c97a.up.railway.app";
+
 class DrishtiApiClient {
   private readonly baseUrl: string;
 
-  constructor(baseUrl: string = "http://localhost:8000") {
+  constructor(baseUrl: string = API_BASE) {
     this.baseUrl = baseUrl;
   }
 
@@ -179,7 +183,7 @@ class DrishtiApiClient {
   }
 }
 
-export const drishtiApi = new DrishtiApiClient("http://localhost:8000");
+export const drishtiApi = new DrishtiApiClient();
 
 // Legacy export for compatibility
 export const engineApi = drishtiApi;
