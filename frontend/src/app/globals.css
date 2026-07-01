@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #080810;
+  --foreground: #f0f0f8;
+  --surface: #0f0f1a;
+  --surface-2: #14141f;
+  --border: rgba(255, 255, 255, 0.06);
+
+  /* Drishti palette — warm indigo meets deep slate */
+  --river-blue: #6366f1;
+  --river-blue-dim: rgba(99, 102, 241, 0.15);
+  --river-glow: rgba(99, 102, 241, 0.4);
+  --warm-amber: #f59e0b;
+  --warm-amber-dim: rgba(245, 158, 11, 0.12);
+  --soft-emerald: #34d399;
+  --soft-rose: #f87171;
+  --text-muted: rgba(240, 240, 248, 0.4);
+  --text-dim: rgba(240, 240, 248, 0.2);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'Cascadia Code', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.2); border-radius: 2px; }
+
+/* ── Input reset ────────────────────────────────────────────── */
+input[type="text"]::placeholder { color: var(--text-dim); font-family: inherit; }
+input[type="text"]:focus { outline: none; }
+textarea::placeholder { color: var(--text-dim); font-family: inherit; }
+textarea:focus { outline: none; }
+
+/* ── River shimmer (landing background) ─────────────────────── */
+@keyframes river-shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-river-shimmer {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.04) 25%,
+    rgba(99, 102, 241, 0.08) 50%,
+    rgba(99, 102, 241, 0.04) 75%,
+    transparent 100%
+  );
+  background-size: 400% 400%;
+  animation: river-shimmer 12s ease infinite;
+}
+
+/* ── Fade up (landing text entrance) ────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.8s ease forwards;
+}
+.animate-fade-up-delay-1 { animation: fade-up 0.8s ease 0.3s forwards; opacity: 0; }
+.animate-fade-up-delay-2 { animation: fade-up 0.8s ease 0.6s forwards; opacity: 0; }
+.animate-fade-up-delay-3 { animation: fade-up 0.8s ease 0.9s forwards; opacity: 0; }
+
+/* ── Typewriter cursor ───────────────────────────────────────── */
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+.animate-cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* ── Breathing pulse (Drishti thinking indicator) ────────────── */
+@keyframes breathe {
+  0%, 100% { opacity: 0.3; transform: scale(0.95); }
+  50%       { opacity: 0.8; transform: scale(1.0); }
+}
+.animate-breathe {
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+/* ── Label glow-settle (persona label just updated) ─────────── */
+@keyframes glow-settle {
+  0%   { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+  20%  { box-shadow: 0 0 12px 2px rgba(99, 102, 241, 0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+.animate-glow-settle {
+  animation: glow-settle 2s ease-out forwards;
+}
+
+/* ── Scanline overlay ────────────────────────────────────────── */
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.animate-scanline {
+  animation: scanline 10s linear infinite;
+}
+
+/* ── Explanation card expand ─────────────────────────────────── */
+@keyframes expand-down {
+  from { opacity: 0; max-height: 0; }
+  to   { opacity: 1; max-height: 300px; }
+}
+.animate-expand-down {
+  animation: expand-down 0.35s ease forwards;
+  overflow: hidden;
+}
+
+/* ── Summary sentence stagger ────────────────────────────────── */
+@keyframes sentence-reveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-sentence-reveal {
+  animation: sentence-reveal 0.6s ease forwards;
+}
+
+/* ── Star fill animation ─────────────────────────────────────── */
+@keyframes star-fill {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-star-fill {
+  animation: star-fill 0.3s ease forwards;
+}
+
+/* ── Inter font for headings ─────────────────────────────────── */
+.font-display {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
