@@ -140,8 +140,10 @@ class ResilientLLMClient:
         )
         if not self._gemini_api_key:
             logger.warning("Google AI API Key not found. Embeddings will be unavailable.")
+            self._gemini_client: Optional[genai.Client] = None
+        else:
+            self._gemini_client = genai.Client(api_key=self._gemini_api_key)
 
-        self._gemini_client: genai.Client = genai.Client(api_key=self._gemini_api_key)
         self._model: str = model
         self._base_delay: float = base_delay
         self._max_retries: int = max_retries
