@@ -109,12 +109,15 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS Policy: Allow all origins for field test (Update this later to specific Vercel URL)
+# CORS Policy: Only allow known frontend origins when credentials are enabled
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://life-decision-simulation-engine.vercel.app",
+    ],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
