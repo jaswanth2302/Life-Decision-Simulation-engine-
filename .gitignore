@@ -63,3 +63,7 @@ venv.bak/
 .idea/
 *.swp
 *.swo
+
+# Allow frontend library files (frontend/src/lib/) to be tracked
+!frontend/src/lib/
+!frontend/src/lib/api.ts
