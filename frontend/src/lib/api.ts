@@ -90,9 +90,13 @@ export interface ApiError {
 // Client
 // ---------------------------------------------------------------------------
 
-const API_BASE =
+const normalizeBaseUrl = (url: string) =>
+  url.replace(/\/+$/, "").replace(/\/api$/, "");
+
+const API_BASE = normalizeBaseUrl(
   process.env.NEXT_PUBLIC_API_URL ??
-  "https://web-production-6c97a.up.railway.app";
+  "https://web-production-6c97a.up.railway.app"
+);
 
 class DrishtiApiClient {
   private readonly baseUrl: string;
