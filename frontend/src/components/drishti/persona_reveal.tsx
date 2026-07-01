@@ -253,7 +253,6 @@ function SentenceRow({
         {isExpanded && (
           <ExplanationCard
             sentence={sentence as any}
-            allMemoryTexts={memoryTexts}
           />
         )}
       </AnimatePresence>

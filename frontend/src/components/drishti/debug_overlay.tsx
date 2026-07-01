@@ -147,9 +147,11 @@ export function DebugOverlay() {
             <div className="mt-1 pt-1 border-t border-green-500/20">Total</div>
             <div className="mt-1 pt-1 border-t border-green-500/20 text-right text-white">
               {debugState.latencies
-                ? Object.values(debugState.latencies).reduce(
-                    (a: any, b: any) => a + b,
-                    0
+                ? Number(
+                    Object.values(debugState.latencies).reduce(
+                      (a: any, b: any) => Number(a) + Number(b),
+                      0
+                    )
                   )
                 : 0}{" "}
               ms
